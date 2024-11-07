@@ -1,0 +1,22 @@
+import smtplib
+
+# Configurações do Gmail
+gmail_user = 'EMAIL@gmail.com'
+app_password = 'SENHA_DE_APP'  # Coloque aqui a senha de app gerada
+
+# Função para testar a autenticação
+def testar_autenticacao():
+    try:
+        # Conectando ao servidor SMTP do Gmail
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()  # Iniciando conexão TLS
+        server.login(gmail_user, app_password)  # Autenticando com email e senha de app
+        print("Autenticação bem-sucedida!")
+        server.quit()  # Encerra a conexão com o servidor
+    except smtplib.SMTPAuthenticationError:
+        print("Falha na autenticação. Verifique o email e a senha de app.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+# Executa o teste
+testar_autenticacao()
